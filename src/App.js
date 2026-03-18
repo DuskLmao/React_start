@@ -7,18 +7,15 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // load từ localStorage
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("todos")) || [];
     setTodos(data);
   }, []);
 
-  // lưu vào localStorage
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  // thêm
   const addItemList = (text) => {
     const newItemList = {
       id: Date.now(),
@@ -28,12 +25,10 @@ function App() {
     setTodos([...todos, newItemList]);
   };
 
-  // xóa
   const deleteItemList = (id) => {
     setTodos(todos.filter(ItemList => ItemList.id !== id));
   };
 
-  // sửa
   const editItemList = (id, newText) => {
     setTodos(
       todos.map(ItemList =>
